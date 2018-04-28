@@ -2,6 +2,7 @@ const path = require("path")
 const webpack = require("webpack")
 const webpackMerge = require("webpack-merge")
 const ExtractTextPlugin  = require("extract-text-webpack-plugin")
+const NameAllModulesPlugin = require("name-all-modules-plugin")
 const baseConfig = require("./webpack.base.config.js")
 
 const config = webpackMerge(baseConfig, {
@@ -55,7 +56,27 @@ const config = webpackMerge(baseConfig, {
   plugins: [
     new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.optimize.UglifyJsPlugin(),
-    new ExtractTextPlugin("style.css")
+    new ExtractTextPlugin("style.css"),
+    new webpack.optimize.CommonsChunkPlugin({
+      name: "vendor"
+    }),
+    new webpack.optimize.CommonsChunkPlugin({
+      name: "manifest",
+      minChunks: Infinity
+    }),
+    new webpack.NamedModulesPlugin(),
+    new NameAllModulesPlugin(),
+    new webpack.DefinePlugin({
+      "process.env": {
+        NODE_ENV: JSON.stringify("production")
+      }
+    }),
+    new webpack.NamedChunksPlugin(chunk => {
+      if (chunk.name) {
+        return chunk.name
+      }
+      return chunk.mapModules(m => path.relative(m.context, m.request)).join("_")
+    }) 
   ]
 })
 
