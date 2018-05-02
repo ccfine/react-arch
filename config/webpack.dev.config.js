@@ -1,20 +1,23 @@
 const path = require("path")
 const webpack = require("webpack")
 const webpackMerge = require("webpack-merge")
-const baseConfig = require("./webpack.base.config.js")
+const commonConfig = require("./webpack.common.config.js")
 
-const config = webpackMerge(baseConfig, {
+const config = webpackMerge(commonConfig, {
   devtool: "eval-source-map",
   entry: {
-    index: path.join(__dirname, "../src/index.js")
+    index: [
+      "babel-polyfill",
+      path.join(__dirname, "../src/index.js")
+    ]
   },
   output: {
     path: path.join(__dirname, "../dist"),
     filename: "[name].[hash].js"
   },
   devServer: {
-    host: "localhost",
-    port: "3000",
+    host: "0.0.0.0",
+    port: 3000,
     contentBase: path.join(__dirname, "../dist"),
     historyApiFallback: true,
     inline: true,
@@ -37,17 +40,15 @@ const config = webpackMerge(baseConfig, {
             loader: "css-loader",
             options: {
               modules: true,
-              localIdentName: "[name]--[local]--[hash:base64:5]"
+              localIdentName: "[name]--[local]__[hash:base64:5]"
             }
           },
           {
             loader: "postcss-loader",
             options: {
-              plugins: function () {
-                return [
-                  require("autoprefixer")
-                ]
-              }
+              plugins: () => [
+                require("autoprefixer")
+              ]
             }
           }
         ],

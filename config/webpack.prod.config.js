@@ -3,23 +3,28 @@ const webpack = require("webpack")
 const webpackMerge = require("webpack-merge")
 const ExtractTextPlugin  = require("extract-text-webpack-plugin")
 const NameAllModulesPlugin = require("name-all-modules-plugin")
-const baseConfig = require("./webpack.base.config.js")
+const commonConfig = require("./webpack.common.config.js")
 
-const config = webpackMerge(baseConfig, {
+const config = webpackMerge(commonConfig, {
   entry: {
-    index: path.join(__dirname, "../src/index.js"),
+    index: [
+      "babel-polyfill",
+      path.join(__dirname, "../src/index.js")
+    ],
     vendor: [
       "react", 
       "react-dom", 
       "redux", 
       "react-redux",
       "redux-thunk",
-      "react-router-dom"
+      "react-router-dom",
+      "axios"
     ]
   },
   output: {
     path: path.join(__dirname, "../bundle"),
-    filename: "[name].[chunkhash].js"
+    filename: "[name].[chunkhash].js",
+    publicPath: "/public/"
   },
   module: {
     rules: [
@@ -33,17 +38,15 @@ const config = webpackMerge(baseConfig, {
                 loader: "css-loader",
                 options: {
                   modules: true,
-                  localIdentName: "[name]--[local]--[hash:base64:5]"
+                  localIdentName: "[name]--[local]__[hash:base64:5]"
                 }
               },
               {
                 loader: "postcss-loader",
                 options: {
-                  plugins: function () {
-                    return [
-                      require("autoprefixer")
-                    ]
-                  }
+                  plugins: () => [
+                    require("autoprefixer")
+                  ]
                 }
               }
             ]
@@ -56,7 +59,10 @@ const config = webpackMerge(baseConfig, {
   plugins: [
     new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.optimize.UglifyJsPlugin(),
-    new ExtractTextPlugin("style.css"),
+    new ExtractTextPlugin({
+      filename: "[name].[contenthash:5].css",
+      allChunks: true
+    }),
     new webpack.optimize.CommonsChunkPlugin({
       name: "vendor"
     }),
