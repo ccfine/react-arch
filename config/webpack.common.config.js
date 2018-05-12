@@ -5,6 +5,12 @@ module.exports = {
   module: {
     rules: [
       {
+        enforce: "pre",
+        test: /\.(js|jsx)$/,
+        loader: "eslint-loader",
+        exclude: /node_modules/
+      },
+      {
         test: /\.(js|jsx)$/,
         loader: "babel-loader",
         include: path.join(__dirname, "../src")
@@ -25,8 +31,9 @@ module.exports = {
       container: path.join(__dirname, "../src/container"),
       action: path.join(__dirname, "../src/redux/action"),
       reducer: path.join(__dirname, "../src/redux/reducer"),
-      css: path.join(__dirname, "../src/css") 
-    }
+      css: path.join(__dirname, "../src/css")
+    },
+    extensions: [".js", ".jsx"]
   },
   plugins: [
     new HtmlWebpackPlugin({

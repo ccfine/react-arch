@@ -23,6 +23,7 @@
     }
   },
   "plugins": [
-    "transfrom-runtime"
+    "transfrom-runtime",
+    "transform-decorators-legacy"
   ]
 }

@@ -12,7 +12,8 @@ const config = webpackMerge(commonConfig, {
       path.join(__dirname, "../src/index.js")
     ],
     vendor: [
-      "react", 
+      "react",
+      "prop-types", 
       "react-dom", 
       "redux", 
       "react-redux",
