@@ -8,15 +8,17 @@ export default class App extends Component {
       hasError: false
     }
   }
+
   componentDidCatch (err, info) {
     this.setState({
       hasError: true
     })
   }
+
   render () {
     return this.state.hasError? null: (
       <div>
-        <div>这是一个能实现大体功能的react项目架构</div>
+        <div>这是一个react项目架构</div>
         <Switch>
         </Switch>
       </div>
