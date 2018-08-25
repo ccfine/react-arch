@@ -23,7 +23,7 @@ const config = webpackMerge(commonConfig, {
     ]
   },
   output: {
-    path: path.join(__dirname, "../bundle"),
+    path: path.join(__dirname, "../build"),
     filename: "[name].[chunkhash].js",
     publicPath: "/public/"
   },
