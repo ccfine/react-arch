@@ -13,7 +13,7 @@ const config = webpackMerge(commonConfig, {
   },
   output: {
     path: path.join(__dirname, "../dist"),
-    filename: "[name].[hash].js"
+    filename: "js/[name].[hash].js"
   },
   devServer: {
     host: "0.0.0.0",

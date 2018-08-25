@@ -19,7 +19,7 @@ module.exports = {
         test: /\.(jpg|png|gif|svg)$/,
         loader: "file-loader",
         options: {
-          name: "[name].[ext]?[hash]"
+          name: "resource/[name].[ext]?[hash]"
         },
         include: path.join(__dirname, "../src")
       }

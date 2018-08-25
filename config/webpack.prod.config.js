@@ -24,7 +24,7 @@ const config = webpackMerge(commonConfig, {
   },
   output: {
     path: path.join(__dirname, "../build"),
-    filename: "[name].[chunkhash].js",
+    filename: "js/[name].[chunkhash].js",
     publicPath: "/public/"
   },
   module: {
@@ -73,7 +73,7 @@ const config = webpackMerge(commonConfig, {
     new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.optimize.UglifyJsPlugin(),
     new ExtractTextPlugin({
-      filename: "[name].[contenthash:5].css",
+      filename: "css/[name].[contenthash:5].css",
       allChunks: true
     }),
     new webpack.NamedModulesPlugin(),
