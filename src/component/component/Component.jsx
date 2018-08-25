@@ -8,5 +8,5 @@ export default class Component extends Component {
         视图组件，与redux无关，可复用
       </div>
     )
-  }   
+  }
 }
