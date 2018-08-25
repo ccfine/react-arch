@@ -13,9 +13,9 @@ const config = webpackMerge(commonConfig, {
     ],
     vendor: [
       "react",
-      "prop-types", 
-      "react-dom", 
-      "redux", 
+      "prop-types",
+      "react-dom",
+      "redux",
       "react-redux",
       "redux-thunk",
       "react-router-dom",
@@ -31,28 +31,26 @@ const config = webpackMerge(commonConfig, {
     rules: [
       {
         test: /\.css$/,
-        use: ExtractTextPlugin.extract(
-          {
-            fallback: "style-loader",
-            use: [
-              {
-                loader: "css-loader",
-                options: {
-                  modules: true,
-                  localIdentName: "[name]--[local]__[hash:base64:5]"
-                }
-              },
-              {
-                loader: "postcss-loader",
-                options: {
-                  plugins: () => [
-                    require("autoprefixer")
-                  ]
-                }
+        use: ExtractTextPlugin.extract({
+          fallback: "style-loader",
+          use: [
+            {
+              loader: "css-loader",
+              options: {
+                modules: true,
+                localIdentName: "[name]--[local]__[hash:base64:5]"
               }
-            ]
-          }
-        ),
+            },
+            {
+              loader: "postcss-loader",
+              options: {
+                plugins: () => [
+                  require("autoprefixer")
+                ]
+              }
+            }
+          ]
+        }),
         include: path.join(__dirname, "../src")
       }
     ]
@@ -83,7 +81,7 @@ const config = webpackMerge(commonConfig, {
         return chunk.name
       }
       return chunk.mapModules(m => path.relative(m.context, m.request)).join("_")
-    }) 
+    })
   ]
 })
 
