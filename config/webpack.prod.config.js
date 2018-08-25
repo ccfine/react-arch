@@ -55,19 +55,26 @@ const config = webpackMerge(commonConfig, {
       }
     ]
   },
+  optimization: {
+    runtimeChunk: {
+        name: "manifest"
+    },
+    splitChunks: {
+        cacheGroups: {
+            commons: {
+                test: /node_modules/,
+                name: "vendor",
+                chunks: "all"
+            }
+        }
+    }
+  },
   plugins: [
     new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.optimize.UglifyJsPlugin(),
     new ExtractTextPlugin({
       filename: "[name].[contenthash:5].css",
       allChunks: true
-    }),
-    new webpack.optimize.CommonsChunkPlugin({
-      name: "vendor"
-    }),
-    new webpack.optimize.CommonsChunkPlugin({
-      name: "manifest",
-      minChunks: Infinity
     }),
     new webpack.NamedModulesPlugin(),
     new NameAllModulesPlugin(),
