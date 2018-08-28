@@ -57,16 +57,16 @@ const config = webpackMerge(commonConfig, {
   },
   optimization: {
     runtimeChunk: {
-        name: "manifest"
+      name: "manifest"
     },
     splitChunks: {
-        cacheGroups: {
-            commons: {
-                test: /node_modules/,
-                name: "vendor",
-                chunks: "all"
-            }
+      cacheGroups: {
+        commons: {
+          test: /node_modules/,
+          name: "vendor",
+          chunks: "all"
         }
+      }
     }
   },
   plugins: [
