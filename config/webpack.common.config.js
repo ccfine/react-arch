@@ -31,7 +31,8 @@ module.exports = {
       container: path.join(__dirname, "../src/container"),
       action: path.join(__dirname, "../src/redux/action"),
       reducer: path.join(__dirname, "../src/redux/reducer"),
-      css: path.join(__dirname, "../src/css")
+      css: path.join(__dirname, "../src/css"),
+      page: path.join(__dirname, "../src/page")
     },
     extensions: [".js", ".jsx"]
   },
