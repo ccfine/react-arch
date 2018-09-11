@@ -6,7 +6,7 @@ import { Provider } from "react-redux"
 import { BrowserRouter } from "react-router-dom"
 import App from "./App.jsx"
 import reducer from "./redux/reducer.js"
-import "css/index.css"
+import "css/global.css"
 
 const store = createStore(reducer, compose(
   applyMiddleware(thunk),
