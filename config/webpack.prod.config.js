@@ -19,7 +19,8 @@ const config = webpackMerge(commonConfig, {
       "react-redux",
       "redux-thunk",
       "react-router-dom",
-      "axios"
+      "axios",
+      "react-helmet"
     ]
   },
   output: {
