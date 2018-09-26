@@ -16,10 +16,18 @@ module.exports = {
         include: path.join(__dirname, "../src")
       },
       {
-        test: /\.(jpg|png|gif|svg)$/,
+        test: /\.(jpg|png|gif)$/,
         loader: "file-loader",
         options: {
           name: "resource/[name].[ext]?[hash]"
+        },
+        include: path.join(__dirname, "../src")
+      },
+      {
+        test: /\.(eot|svg|ttf|woff)$/,
+        loader: "url-loader",
+        options: {
+          name: "font/[name].[md5:hash:hex:7].[ext]"
         },
         include: path.join(__dirname, "../src")
       }
