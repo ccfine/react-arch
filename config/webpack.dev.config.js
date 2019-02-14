@@ -4,7 +4,7 @@ const webpackMerge = require("webpack-merge")
 const commonConfig = require("./webpack.common.config.js")
 
 const config = webpackMerge(commonConfig, {
-  devtool: "eval-source-map",
+  mode: "development",
   entry: {
     index: [
       "babel-polyfill",
@@ -15,6 +15,7 @@ const config = webpackMerge(commonConfig, {
     path: path.join(__dirname, "../dist"),
     filename: "js/[name].[hash].js"
   },
+  devtool: "eval-source-map",
   devServer: {
     host: "0.0.0.0",
     port: 3000,

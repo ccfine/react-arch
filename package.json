@@ -4,8 +4,8 @@
   "description": "",
   "main": "./src/index.js",
   "scripts": {
-    "start": "rimraf dist && webpack --config ./config/webpack.dev.config.js --color --progress",
-    "dev": "webpack-dev-server --config ./config/webpack.dev.config.js --color --progress",
+    "start": "webpack-dev-server --config ./config/webpack.dev.config.js --color --progress",
+    "dev": "rimraf dist && webpack --config ./config/webpack.dev.config.js --color --progress",
     "build": "cross-env NODE_ENV=production rimraf build && webpack --config ./config/webpack.prod.config.js",
     "lint": "eslint --ext .js --ext .jsx src/",
     "precommit": "npm run lint"

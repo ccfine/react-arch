@@ -6,6 +6,7 @@ const NameAllModulesPlugin = require("name-all-modules-plugin")
 const commonConfig = require("./webpack.common.config.js")
 
 const config = webpackMerge(commonConfig, {
+  mode: "production",
   entry: {
     index: [
       "babel-polyfill",
