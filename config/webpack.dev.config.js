@@ -13,7 +13,8 @@ const config = webpackMerge(commonConfig, {
   },
   output: {
     path: path.join(__dirname, "../dist"),
-    filename: "js/[name].[hash].js"
+    filename: "js/[name].[hash].js",
+    chunkFilename: "js/[name].[chunkhash].js"
   },
   devtool: "eval-source-map",
   devServer: {

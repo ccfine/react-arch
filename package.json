@@ -6,7 +6,7 @@
   "scripts": {
     "start": "webpack-dev-server --config ./config/webpack.dev.config.js --color --progress",
     "dev": "rimraf dist && webpack --config ./config/webpack.dev.config.js --color --progress",
-    "build": "cross-env NODE_ENV=production rimraf build && webpack --config ./config/webpack.prod.config.js",
+    "build": "cross-env NODE_ENV=production && rimraf build && webpack --config ./config/webpack.prod.config.js",
     "lint": "eslint --ext .js --ext .jsx src/",
     "precommit": "npm run lint"
   },
@@ -55,6 +55,7 @@
     "redux-devtools-extension": "^2.13.5",
     "rimraf": "^2.6.2",
     "style-loader": "^0.21.0",
+    "uglifyjs-webpack-plugin": "^2.1.2",
     "webpack": "^4.17.1",
     "webpack-cli": "^3.1.0",
     "webpack-dev-server": "^3.1.5",

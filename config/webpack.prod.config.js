@@ -2,6 +2,7 @@ const path = require("path")
 const webpack = require("webpack")
 const webpackMerge = require("webpack-merge")
 const ExtractTextPlugin  = require("extract-text-webpack-plugin")
+const UglifyJSPlugin = require("uglifyjs-webpack-plugin")
 const NameAllModulesPlugin = require("name-all-modules-plugin")
 const commonConfig = require("./webpack.common.config.js")
 
@@ -27,6 +28,7 @@ const config = webpackMerge(commonConfig, {
   output: {
     path: path.join(__dirname, "../build"),
     filename: "js/[name].[chunkhash].js",
+    chunkFilename: "js/[name].[chunkhash].js",
     publicPath: "/public/"
   },
   module: {
