@@ -1,6 +1,7 @@
 const path = require("path")
 const webpack = require("webpack")
 const webpackMerge = require("webpack-merge")
+const NameAllModulesPlugin = require("name-all-modules-plugin")
 const commonConfig = require("./webpack.common.config.js")
 
 const config = webpackMerge(commonConfig, {
@@ -59,7 +60,9 @@ const config = webpackMerge(commonConfig, {
     ]
   },
   plugins: [
-    new webpack.HotModuleReplacementPlugin()
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.NamedModulesPlugin(),
+    new NameAllModulesPlugin()
   ]
 })
 

@@ -3,7 +3,6 @@ const webpack = require("webpack")
 const webpackMerge = require("webpack-merge")
 const ExtractTextPlugin  = require("extract-text-webpack-plugin")
 const UglifyJSPlugin = require("uglifyjs-webpack-plugin")
-const NameAllModulesPlugin = require("name-all-modules-plugin")
 const commonConfig = require("./webpack.common.config.js")
 
 const config = webpackMerge(commonConfig, {
@@ -59,20 +58,6 @@ const config = webpackMerge(commonConfig, {
       }
     ]
   },
-  optimization: {
-    runtimeChunk: {
-      name: "manifest"
-    },
-    splitChunks: {
-      cacheGroups: {
-        commons: {
-          test: /node_modules/,
-          name: "vendor",
-          chunks: "all"
-        }
-      }
-    }
-  },
   plugins: [
     new webpack.optimize.OccurrenceOrderPlugin(),
     new UglifyJSPlugin(),
@@ -80,11 +65,33 @@ const config = webpackMerge(commonConfig, {
       filename: "css/[name].[contenthash:5].css",
       allChunks: true
     }),
-    new webpack.NamedModulesPlugin(),
-    new NameAllModulesPlugin(),
     new webpack.DefinePlugin({
       "process.env": {
         NODE_ENV: JSON.stringify("production")
+      }
+    }),
+    new webpack.optimize.RuntimeChunkPlugin({
+      name: "manifest"
+    }),
+    new webpack.optimize.SplitChunksPlugin({
+      cacheGroups: {
+        default: {
+          minChunks: 2,
+          priority: -20,
+          reuseExistingChunk: true
+        },
+        index: {
+          name: "index",
+          chunks: "initial",
+          minChunks: Infinity
+        },
+        vendor: {
+          name: "vendor",
+          chunks: "initial",
+          minChunks: 2,
+          maxInitialRequests: 5, 
+          minSize: 0
+        }
       }
     }),
     new webpack.NamedChunksPlugin(chunk => {
