@@ -75,7 +75,7 @@ const config = webpackMerge(commonConfig, {
   },
   plugins: [
     new webpack.optimize.OccurrenceOrderPlugin(),
-    new webpack.optimize.UglifyJsPlugin(),
+    new UglifyJSPlugin(),
     new ExtractTextPlugin({
       filename: "css/[name].[contenthash:5].css",
       allChunks: true
