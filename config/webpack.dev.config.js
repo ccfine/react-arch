@@ -34,6 +34,27 @@ const config = webpackMerge(commonConfig, {
   module: {
     rules: [
       {
+        test: /\.(js|jsx)$/,
+        loader: "babel-loader",
+        options: {
+          "plugins": [
+            [
+              "react-transform",
+              {
+                "transforms": [
+                  {
+                    "transform": "react-transform-hmr",
+                    "imports": ["react"],
+                    "locals": ["module"]
+                  }
+                ]
+              }
+            ]
+          ]
+        },
+        include: path.join(__dirname, "../src")
+      },
+      {
         test: /\.css$/,
         use: [
           {

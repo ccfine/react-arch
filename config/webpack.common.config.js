@@ -11,11 +11,6 @@ module.exports = {
         exclude: /node_modules/
       },
       {
-        test: /\.(js|jsx)$/,
-        loader: "babel-loader",
-        include: path.join(__dirname, "../src")
-      },
-      {
         test: /\.(jpg|png|gif)$/,
         use: [
           {

@@ -33,6 +33,11 @@ const config = webpackMerge(commonConfig, {
   module: {
     rules: [
       {
+        test: /\.(js|jsx)$/,
+        loader: "babel-loader",
+        include: path.join(__dirname, "../src")
+      },
+      {
         test: /\.css$/,
         use: ExtractTextPlugin.extract({
           fallback: "style-loader",
