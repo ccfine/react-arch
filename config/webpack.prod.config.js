@@ -46,7 +46,7 @@ const config = webpackMerge(commonConfig, {
               loader: "css-loader",
               options: {
                 modules: true,
-                localIdentName: "[name]--[local]__[hash:base64:5]"
+                localIdentName: "[name]--[local]__[hash:base64]"
               }
             },
             {
@@ -67,7 +67,7 @@ const config = webpackMerge(commonConfig, {
     new webpack.optimize.OccurrenceOrderPlugin(),
     new UglifyJSPlugin(),
     new ExtractTextPlugin({
-      filename: "css/[name].[contenthash:5].css",
+      filename: "css/[name].[hash].css",
       allChunks: true
     }),
     new webpack.DefinePlugin({
