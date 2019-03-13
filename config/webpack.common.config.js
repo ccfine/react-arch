@@ -26,11 +26,11 @@ module.exports = {
         include: path.join(__dirname, "../src")
       },
       {
-        test: /\.(eot|svg|ttf|woff)$/,
+        test: /\.(eot|svg|ttf|woff|woff2)$/,
         loader: "url-loader",
         options: {
           limit: 8192,
-          name: "font/[name].[md5:hash:hex:7].[ext]"
+          name: "font/[name].[md5:hash:hex].[ext]"
         },
         include: path.join(__dirname, "../src")
       }
