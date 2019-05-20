@@ -17,7 +17,7 @@ const config = webpackMerge(commonConfig, {
     filename: "js/[name].[hash].js",
     chunkFilename: "js/[name].[chunkhash].js"
   },
-  devtool: "eval-source-map",
+  devtool: "cheap-module-eval-source-map",
   devServer: {
     host: "0.0.0.0",
     port: 3000,

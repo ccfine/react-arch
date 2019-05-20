@@ -30,6 +30,7 @@ const config = webpackMerge(commonConfig, {
     chunkFilename: "js/[name].[chunkhash].js",
     publicPath: "/public/"
   },
+  devtool: "cheap-module-source-map",
   module: {
     rules: [
       {
